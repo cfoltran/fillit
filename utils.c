@@ -1,21 +1,5 @@
 #include "fillit.h"
-
-t_tetri		read_piece(int fd)
-{
-	t_tetri	*lst;
-	char	buf[BUFF_SIZE + 1];
-	int 	fd;
-	char	id;
-	int		end;
-
-	buf[BUFF_SIZE - 1] = '\0';
-	end = 0;
-	id = 'A';
-	while ((read(fd, buf, BUFF_SIZE)) > 0)
-	{
-		buf[BUFF_SIZE] = 0;
-	}
-}
+#include <stdio.h>
 
 void		ft_tetriadd(t_tetri **tetri, t_tetri *new)
 {
@@ -26,31 +10,55 @@ void		ft_tetriadd(t_tetri **tetri, t_tetri *new)
 	}
 }
 
-t_coord		*ft_coordnew(int x[4], int y[5])
-{
-	t_coord 	*result;
-
-	// if ((result = (t_coord*)malloc(sizeof(t_coord))))
-	// {
-	// 	result->x = x;
-	// 	result->y = y;
-	// }
-	result->next = NULL;
-	return (result);
-}
-
-
-t_tetri		*ft_tetrinew(char	**tetri, char id, t_coord *point)
+t_tetri		*ft_tetrinew(char **tetri, char id, t_coord point)
 {
 	t_tetri		*result;
 
-	if (!tetri || !id || !point)
+	if (!tetri || !id)
 		return (NULL);
-	if ((result = (t_tetri*)malloc(sizeof(t_list))))
-	{
-		result->tetri = tetri;
-		result->id = id;
-	}
+		if (!(result = (t_tetri*)malloc(sizeof(t_tetri))))
+		return (NULL);
+
+	result->tetri = tetri;
+	result->id = id;
+	result->point = point;
 	result->next = NULL;
 	return (result);
 }
+
+t_tetri		*read_piece(int fd)
+{
+	t_tetri	*lst;
+	t_coord coord;
+	char	*line;
+	char	id;
+	char	*pos;
+	int		i;
+	int		cpt;
+
+	i = -1;
+	cpt = 0;
+	id = 'A';
+	lst = NULL;
+	while (get_next_line(fd, &line) == 1)
+	{
+		if ((++cpt % 5) != 0 && line[4] != '\0' && i < 4)
+			return (NULL);
+		while ((pos = ft_strchr(line, '#')))
+		{
+			coord.x[++i] = cpt;
+			coord.y[i] = pos - line;			
+		}
+		if (cpt % 5 == 0)
+		{
+			if (cpt == 5)
+				lst = ft_tetrinew(&line, id, coord);
+			else
+				ft_tetriadd(&lst, ft_tetrinew(&line, id++, coord));
+			free(line);
+			i = 0;
+		}
+	}
+	return (lst);
+}
+
