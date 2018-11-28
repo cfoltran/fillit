@@ -6,7 +6,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # define BUFF_SIZE 21
-
+# define FILENAME "usage: ./fillit filename"
 typedef struct 		s_list
 {
 	char			**tetri;

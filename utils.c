@@ -1,9 +1,14 @@
-t_list		*ft_lstnew(char	**tetri, char id)
+#include "fillit.h"
+
+t_piece		read_piece(int fd)
 {
-	t_list		*result;
+	t_piece	*lst;
+	char	buf[BUFF_SIZE + 1];
+	int 	fd;
+	int		ret;
 
-	if (!(result = (t_list*)malloc(sizeof(t_list))))
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-
+		buf[ret] = 0;	
 	}
 }
