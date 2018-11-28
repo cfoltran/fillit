@@ -7,4 +7,11 @@
 # include <fcntl.h>
 # define BUFF_SIZE 21
 
+typedef struct 		s_list
+{
+	char			**tetri;
+	char			id;
+	struct s_list 	*next;
+}					t_list;
+
 #endif
