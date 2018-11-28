@@ -1,6 +1,8 @@
 NAME = fillit
 
-SRC = fillit.c \
+SRC = 	fillit.c \
+		utils.c \
+		get_next_line.c \
 
 INC = -I libft/includes -L libft/ -lft
 
