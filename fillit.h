@@ -6,6 +6,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # define BUFF_SIZE 21
+# define FILENAME "usage: ./fillit filename"
 
 typedef struct 			s_coord
 {
@@ -14,13 +15,14 @@ typedef struct 			s_coord
 	struct s_coord		*next;
 }						t_coord;
 
-typedef struct 		s_tetri
+typedef struct 		    s_tetri
+
 {
-	char			**tetri;
-	char			id;
-	t_coord			point;
-	struct s_tetri 	*next;
-}					t_tetri;
+	char			    **tetri;
+	char			    id;
+	t_coord			    point;
+	struct s_list 	    *next;
+}					    t_tetri;
 
 void				ft_tetriadd(t_tetri **tetri, t_tetri *new);
 t_coord				*ft_coordnew(int	x[4], int y[5]);
