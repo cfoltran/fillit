@@ -13,7 +13,7 @@ int		main(int argc, char **argv)
 		res = read_piece(fd);
 		while (res)
 		{
-			ft_putstr(*res->tetri);
+			ft_putendl(*res->tetri);
 			res = res->next;
 		}
 		if (close(fd) == -1)

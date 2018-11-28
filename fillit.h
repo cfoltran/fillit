@@ -24,10 +24,10 @@ typedef struct		s_tetri
 	struct s_tetri 	*next;
 }					t_tetri;
 
-void				ft_tetriadd(t_tetri **tetri, t_tetri *new);
-t_coord				*ft_coordnew(int	x[4], int y[5]);
-t_tetri				*ft_tettrinew(char **tetri, char id, t_coord point);
+//void				ft_tetriadd(t_tetri **tetri, t_tetri *new);
+//t_tetri				*ft_tettrinew(char **tetri, char id, t_coord point);
 t_tetri		        *read_piece(int fd);
+t_tetri				*tetri_add(t_tetri *lst, char *line, char c);
 int         		get_next_line(const int fd, char **line);
 
 #endif
