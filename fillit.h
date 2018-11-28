@@ -22,4 +22,8 @@ typedef struct 		s_tetri
 	struct s_list 	*next;
 }					t_tetri;
 
+void				ft_tetriadd(t_tetri **tetri, t_tetri *new);
+t_coord				ft_coordnew(int	x[4], int y[5]);
+t_tetri				ft_tettrinew(char **tetri, char id, t_coord point);
+
 #endif

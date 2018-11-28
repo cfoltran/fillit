@@ -1,3 +1,12 @@
+void		ft_tetriadd(t_tetri **tetri, t_tetri *new)
+{
+	if (new && tetri)
+	{
+		new->next = *tetri;
+		*tetri = new;
+	}
+}
+
 t_coord		*ft_coordnew(int x[4], int y[5])
 {
 	t_coord 	*result;
@@ -12,13 +21,13 @@ t_coord		*ft_coordnew(int x[4], int y[5])
 }
 
 
-t_tetri		*ft_lstnew(char	**tetri, char id, t_coord point)
+t_tetri		*ft_tetrinew(char	**tetri, char id, t_coord point)
 {
 	t_list		*result;
 
 	if (!tetri || !id || !point)
 		return (NULL);
-	if (!(result = (t_list*)malloc(sizeof(t_list))))
+	if (!(result = (t_tetri*)malloc(sizeof(t_list))))
 	{
 		result->tetri = tetri;
 		result->id = id;
@@ -26,3 +35,5 @@ t_tetri		*ft_lstnew(char	**tetri, char id, t_coord point)
 	result->next = NULL;
 	return (result);
 }
+
+
