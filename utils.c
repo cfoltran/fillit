@@ -1,6 +1,36 @@
 #include "fillit.h"
 #include <stdio.h>
 
+t_tetri		coord_add(t_tetri *lst)
+{
+	int 		x;
+	int			y;
+	int 		i;
+	char 		*pos;
+	t_tetri		*lst;
+
+
+	lst = tetri;
+	while (lst)
+	{
+		while ((lst->line)[x])
+		{
+			y = 0;
+			while ((lst->line)[x][y])
+			{
+				if ((lst->line)[x][y] == '#')
+					//do something
+				lst->point.x[i] = x;
+				lst->point.y[i] = y;
+				y++;
+			}
+			x++;
+		}
+		lst = lst->next;
+	}
+	return (lst);
+}
+
 t_tetri			*tetri_add(t_tetri *lst, char *line, char c, t_coord *point)
 {
 	t_tetri		*tmp;
@@ -17,38 +47,10 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c, t_coord *point)
 			i = i->next;
 		i->next = tmp;
 	}
-	tmp->point = point;
 	tmp->tetri = ft_strsplit(line, '\n');
 	tmp->id = c;
 	tmp->next = NULL;
 	return (lst);
-}
-
-void		coord_add(t_coord **coord, char *line, int cpt, int *i)
-{
-	char 		*pos;
-
-	if (line && cpt)
-	{
-		while ((*coord)->next)
-			coord = &(*coord)->next;
-		line = ft_strtrim(line);
-		while ((line = ft_strrchr(line, '#')) && line)
-		{
-			printf("cpt = %d\n", cpt);
-			printf("line = %s\n\n\n", line);
-	//		printf("line pos - line = %lu\n\n\n", ft_strlen(line) - (pos - line));
-	//		printf("line[pos - line + 1] = %c\n\n\n", line[pos - line + 1]);
-			printf("pos - line  = %ld\n\n\n", pos - line);
-			//ft_strcpy(line, pos + 1);
-			//ft_strcpy(line, line + pos);
-			(*coord)->x[*i] = cpt;
-			(*coord)->y[*i] = pos - line;
-			(*i)++;
-		}
-		if (*coord)
-			(*coord)->next = NULL;
-	}
 }
 
 t_tetri		*read_piece(int fd)
