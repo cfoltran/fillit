@@ -38,7 +38,6 @@ void		coord_add(t_coord **coord, char *line, int cpt)
 		}
 		while ((pos = ft_strrchr(line, '#')))
 		{
-			printf("%s", pos);
 			(*coord)->x[++i] = cpt;
 			(*coord)->y[i] = pos - line;
 			line = ft_strcpy(line, pos);

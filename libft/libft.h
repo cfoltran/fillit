@@ -6,7 +6,7 @@
 /*   By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 13:22:02 by clfoltra          #+#    #+#             */
-/*   Updated: 2018/11/28 11:31:56 by clfoltra         ###   ########.fr       */
+/*   Updated: 2018/11/29 16:46:52 by clfoltra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ char				*ft_itoa(int n);
 char				*ft_strjoinfree(char *s1, char *s2, size_t l, int opt);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_strichr(const char *s, int c);
+void				ft_exit(char *msg, int val);
+int 			    ft_strccnt(char *s, char c);
 
 #endif

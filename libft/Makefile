@@ -6,7 +6,7 @@
 #    By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 13:28:57 by clfoltra          #+#    #+#              #
-#    Updated: 2018/11/29 12:36:03 by clfoltra         ###   ########.fr        #
+#    Updated: 2018/11/29 16:29:02 by clfoltra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SRC = ft_putstr.c ft_putchar.c ft_putnbr.c ft_putendl.c ft_putchar_fd.c \
 		ft_strncmp.c ft_strlcat.c ft_strnlen.c ft_striteri.c ft_itoa.c \
 		ft_lstdel.c ft_strncat.c ft_lstmap.c ft_isblank.c ft_islower.c \
 		ft_isupper.c ft_str_is_alpha.c ft_str_is_lowercase.c ft_strichr.c \
-		ft_str_is_uppercase.c ft_strnjoinfree.c ft_strndup.c \
-
+		ft_str_is_uppercase.c ft_strnjoinfree.c ft_strndup.c ft_exit.c \
+		ft_strccnt.c \
 
 OBJ	= $(SRC:.c=.o)
 
@@ -35,7 +35,7 @@ CFLAGS	?=	-Wall -Wextra -Werror
 
 %.o: %.c
 	@$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
-	@printf "\x1b[32m█\x1b[32m"
+	@printf "\x1b[32m▮\x1b[32m"
 
 all: $(NAME)
 

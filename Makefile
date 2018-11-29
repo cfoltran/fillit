@@ -1,8 +1,9 @@
 NAME = fillit
 
-SRC =  utils.c \
-  	  fillit.c \
-	  get_next_line.c \
+SRC =	utils.c \
+  	  	fillit.c \
+		get_next_line.c \
+		errors.c \
 
 CC = gcc
 
@@ -17,7 +18,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		@printf "\n"
 		@make -C libft/
-		@printf "\n"
+		@printf "\n\n"
 			@$(CC) $(CFLAGS) $(INC) -o $@ $^ 
 
 clean:

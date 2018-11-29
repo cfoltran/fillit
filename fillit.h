@@ -5,10 +5,19 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# define FILENAME "usage: ./fillit filename"
-# define BUFF_SIZE 21
-# define TRUE 1
-# define MAX_FD 4096
+
+# define BUFF_SIZE 	21
+# define MAX_FD 	4096
+# define TRUE		1
+
+# define FILEERR 	"usage: ./fillit filename"
+# define OPENERR 	"error : open"
+# define CLOSERR 	"error : close"
+# define GRIDERR 	"error : invalid grid"
+
+# define END 		4
+# define BLOCK 		'#'
+# define EMPTY 		'.'
 
 typedef struct 		s_coord
 {
@@ -25,11 +34,12 @@ typedef struct		s_tetri
 	struct s_tetri 	*next;
 }					t_tetri;
 
-//void				ft_tetriadd(t_tetri **tetri, t_tetri *new);
-//t_tetri				*ft_tettrinew(char **tetri, char id, t_coord point);
 t_tetri		        *read_piece(int fd);
 t_tetri				*tetri_add(t_tetri *lst, char *line, char c, t_coord *point);
 void				coord_add(t_coord **cord, char *line, int cpt);
 int         		get_next_line(const int fd, char **line);
+int				    nb_piece(char **piece);
+//int				    check_errors(t_tetri *lst);
+int     check_errors(char **tab);
 
 #endif
