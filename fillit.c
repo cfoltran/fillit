@@ -11,6 +11,7 @@ int		main(int argc, char **argv)
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			return (-1);
 		res = read_piece(fd);
+		ft_putstr(*res->tetri);
 		// while (res)
 		// {
 		// 	ft_putendl(*res->tetri);
