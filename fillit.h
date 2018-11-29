@@ -29,7 +29,7 @@ typedef struct		s_tetri
 //t_tetri				*ft_tettrinew(char **tetri, char id, t_coord point);
 t_tetri		        *read_piece(int fd);
 t_tetri				*tetri_add(t_tetri *lst, char *line, char c, t_coord *point);
-void				coord_add(t_coord **cord, char *line, int cpt);
+void				coord_add(t_coord **cord, char *line, int cpt, int *i);
 int         		get_next_line(const int fd, char **line);
 
 #endif

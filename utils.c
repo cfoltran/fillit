@@ -24,24 +24,27 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c, t_coord *point)
 	return (lst);
 }
 
-void		coord_add(t_coord **coord, char *line, int cpt)
+void		coord_add(t_coord **coord, char *line, int cpt, int *i)
 {
 	char 		*pos;
-	int			i;
 
-	i = 0;
 	if (line && cpt)
 	{
-		while (*coord)
-		{
+		while ((*coord)->next)
 			coord = &(*coord)->next;
-		}
-		while ((pos = ft_strrchr(line, '#')))
+		line = ft_strtrim(line);
+		while ((line = ft_strrchr(line, '#')) && line)
 		{
-			printf("%s", pos);
-			(*coord)->x[++i] = cpt;
-			(*coord)->y[i] = pos - line;
-			line = ft_strcpy(line, pos);
+			printf("cpt = %d\n", cpt);
+			printf("line = %s\n\n\n", line);
+	//		printf("line pos - line = %lu\n\n\n", ft_strlen(line) - (pos - line));
+	//		printf("line[pos - line + 1] = %c\n\n\n", line[pos - line + 1]);
+			printf("pos - line  = %ld\n\n\n", pos - line);
+			//ft_strcpy(line, pos + 1);
+			//ft_strcpy(line, line + pos);
+			(*coord)->x[*i] = cpt;
+			(*coord)->y[*i] = pos - line;
+			(*i)++;
 		}
 		if (*coord)
 			(*coord)->next = NULL;
@@ -56,12 +59,13 @@ t_tetri		*read_piece(int fd)
 	char	*tmp;
 	char	id;
 	int		cpt;
+	int		i;
 
-
+	i = 0;
 	cpt = 0;
 	id = 'A';
 	lst = NULL;
-	if (!(coord = (t_coord*)malloc(sizeof(t_coord))))
+	if (!(coord = malloc(sizeof(t_coord))))
 		return (NULL);
 	while (get_next_line(fd, &line) == 1)
 	{
@@ -69,11 +73,11 @@ t_tetri		*read_piece(int fd)
 			return (NULL);
 		tmp = ft_strnew(ft_strlen(line));
 		tmp = ft_strcpy(tmp, line);
-		coord_add(&coord, line, cpt);
+		coord_add(&coord, line, cpt, &i);
 		if (cpt % 5 == 0)
 		{
 			lst = tetri_add(lst, tmp, id++, coord);
-			//ft_bzero((void *)&coord, sizeof(t_coord));
+			i = 0;
 			ft_memdel((void *)&tmp);
 			ft_memdel((void *)&line);
 		}
