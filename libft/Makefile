@@ -6,7 +6,7 @@
 #    By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 13:28:57 by clfoltra          #+#    #+#              #
-#    Updated: 2018/11/28 13:19:20 by clfoltra         ###   ########.fr        #
+#    Updated: 2018/11/29 11:51:34 by clfoltra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,17 +35,17 @@ CFLAGS	?=	-Wall -Wextra -Werror
 
 %.o: %.c
 	@$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
-	@echo compiling $@
+	@printf "\x1b[32m█\x1b[32m"
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $@ $(OBJ)
+	@ar rcs $@ $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 re: fclean all
