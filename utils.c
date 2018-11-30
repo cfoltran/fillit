@@ -1,24 +1,26 @@
 #include "fillit.h"
 #include <stdio.h>
 
-t_tetri		coord_add(t_tetri *lst)
+t_tetri		*coord_add(t_tetri *tetri)
 {
 	int 		x;
 	int			y;
 	int 		i;
-	char 		*pos;
 	t_tetri		*lst;
 
 
+	x = 0;
+	y = 0;
+	i = 0;
 	lst = tetri;
 	while (lst)
 	{
-		while ((lst->line)[x])
+		while ((lst->tetri)[x])
 		{
 			y = 0;
-			while ((lst->line)[x][y])
+			while ((lst->tetri)[x][y])
 			{
-				if ((lst->line)[x][y] == '#')
+				if ((lst->tetri)[x][y] == '#')
 					//do something
 				lst->point.x[i] = x;
 				lst->point.y[i] = y;
@@ -31,7 +33,7 @@ t_tetri		coord_add(t_tetri *lst)
 	return (lst);
 }
 
-t_tetri			*tetri_add(t_tetri *lst, char *line, char c, t_coord *point)
+t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 {
 	t_tetri		*tmp;
 	t_tetri		*i;
@@ -56,7 +58,6 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c, t_coord *point)
 t_tetri		*read_piece(int fd)
 {
 	t_tetri	*lst;
-	t_coord *coord;
 	char	*line;
 	char	*tmp;
 	char	id;
@@ -67,23 +68,21 @@ t_tetri		*read_piece(int fd)
 	cpt = 0;
 	id = 'A';
 	lst = NULL;
-	if (!(coord = malloc(sizeof(t_coord))))
-		return (NULL);
 	while (get_next_line(fd, &line) == 1)
 	{
 		if ((++cpt % 5) != 0 && line[4] != '\n' && line[5] != '\n')
 			return (NULL);
 		tmp = ft_strnew(ft_strlen(line));
 		tmp = ft_strcpy(tmp, line);
-		coord_add(&coord, line, cpt, &i);
 		if (cpt % 5 == 0)
 		{
-			lst = tetri_add(lst, tmp, id++, coord);
+			lst = tetri_add(lst, tmp, id++);
 			i = 0;
 			ft_memdel((void *)&tmp);
 			ft_memdel((void *)&line);
 		}
 	}
+	lst = coord_add(lst);
 	return (lst);
 }
 
