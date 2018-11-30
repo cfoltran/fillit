@@ -5,4 +5,5 @@
 a.out
 fillit
 .DS_Store
-*.dSYM/
+a.out.dSYM
+.vscode

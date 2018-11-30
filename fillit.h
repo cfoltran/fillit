@@ -30,13 +30,13 @@ typedef struct		s_tetri
 {
 	char			**tetri;
 	char			id;
-	t_coord			*point;
+	t_coord			point;
 	struct s_tetri 	*next;
 }					t_tetri;
 
+t_tetri				*coord_add(t_tetri *lst);
 t_tetri		        *read_file(int fd);
 t_tetri				*tetri_add(t_tetri *lst, char *line, char c);
-void				coord_add(t_coord **cord, char *line, int cpt);
 int         		get_next_line(const int fd, char **line);
 int				    nb_piece(char **piece);
 int				    check_errors(t_tetri *lst);
