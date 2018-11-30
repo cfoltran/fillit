@@ -44,5 +44,7 @@ int         		get_next_line(const int fd, char **line);
 int				    nb_piece(char **piece);
 //int					piece_integrity(t_tetri *lst);
 int				    check_errors(t_tetri *lst);
+int					solv_fillit(t_tetri *tetri, char **tab);
+int					is_tettriput(t_tetri *tetri, char **tab, int x, int y);
 
 #endif
