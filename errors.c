@@ -27,7 +27,7 @@ int     check_errors(t_tetri *lst)
         return (0);
     while (lst)
     {
-        if (!nb_piece(lst->tetri))
+        if (!nb_piece(lst->tetri) || !piece_integrity(lst))
             return (0);
         lst = lst->next;
     }
