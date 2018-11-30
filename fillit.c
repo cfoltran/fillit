@@ -15,15 +15,19 @@ int		main(int argc, char **argv)
 			ft_exit(OPENERR, 1);
 		res = read_file(fd);
 		if (!check_errors(res))
-			ft_exit(GRIDERR, 1);
-		while (res)
-		{
-			i = -1;
-			while (res->tetri[++i])
-				ft_putendl(res->tetri[i]);
-			res = res->next;
-			ft_putendl("");
-		}
+		 	ft_exit(GRIDERR, 1);
+		// while (res)
+		// {
+		// 	i = -1;
+		// 	while (res->tetri[++i])
+		// 	{
+		// 		ft_putendl(res->tetri[i]);
+		// 		//ft_putnbr(res->point.x[i]);
+		// 		//ft_putendl("");
+		// 	}
+		// 	res = res->next;
+		// 	ft_putendl("");
+		// }
 		if (close(fd) == -1)
 			ft_exit(CLOSERR, 1);
 	}

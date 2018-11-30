@@ -21,11 +21,6 @@ int     nb_piece(char **piece)
     return (1);
 }
 
-// int     piece_integrity(char **piece)
-// {
-
-// }
-
 int     check_errors(t_tetri *lst)
 {
     if (!lst)

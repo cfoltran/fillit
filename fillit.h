@@ -5,6 +5,9 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+///////////////////////
+# include <stdio.h>
+///////////////////////
 
 # define BUFF_SIZE 	21
 # define MAX_FD 	4096
@@ -39,6 +42,7 @@ t_tetri		        *read_file(int fd);
 t_tetri				*tetri_add(t_tetri *lst, char *line, char c);
 int         		get_next_line(const int fd, char **line);
 int				    nb_piece(char **piece);
+int				    piece_integrity(char **piece);
 int				    check_errors(t_tetri *lst);
 
 #endif
