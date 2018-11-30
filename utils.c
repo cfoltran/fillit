@@ -26,11 +26,11 @@ t_tetri		*coord_add(t_tetri *tetri)
 					lst->point.y[i] = y;
 					i++;
 				}
-			/*	else
+				else
 				{
 					lst->point.x[i] = -1;
 					lst->point.y[i] = -1;
-				}*/
+				}
 				y++;
 			}
 			x++;
