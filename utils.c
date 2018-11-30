@@ -1,37 +1,7 @@
 #include "fillit.h"
 #include <stdio.h>
 
-t_tetri		*coord_add(t_tetri *tetri)
-{
-	int 		x;
-	int			y;
-	int 		i;
-	t_tetri		*lst;
 
-
-	x = 0;
-	y = 0;
-	i = 0;
-	lst = tetri;
-	while (lst)
-	{
-		while ((lst->tetri)[x])
-		{
-			y = 0;
-			while ((lst->tetri)[x][y])
-			{
-				if ((lst->tetri)[x][y] == '#')
-					//do something
-				lst->point.x[i] = x;
-				lst->point.y[i] = y;
-				y++;
-			}
-			x++;
-		}
-		lst = lst->next;
-	}
-	return (lst);
-}
 
 t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 {
@@ -86,3 +56,35 @@ t_tetri		*read_piece(int fd)
 	return (lst);
 }
 
+t_tetri		*coord_add(t_tetri *tetri)
+{
+	int 		x;
+	int			y;
+	int 		i;
+	t_tetri		*lst;
+
+
+	x = 0;
+	y = 0;
+	i = 0;
+	lst = tetri;
+	while (lst)
+	{
+		while ((lst->tetri)[x])
+		{
+			y = 0;
+			while ((lst->tetri)[x][y])
+			{
+				if ((lst->tetri)[x][y] == '#')
+				{
+					lst->point.x[i] = x;
+					lst->point.y[i] = y;
+				}
+				y++;
+			}
+			x++;
+		}
+		lst = lst->next;
+	}
+	return (lst);
+}
