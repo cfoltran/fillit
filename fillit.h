@@ -21,7 +21,7 @@
 
 typedef struct 		s_coord
 {
-	int				x[4];
+	int				x[5];
 	int				y[5];
 	struct s_coord	*next;
 }					t_coord;

@@ -9,6 +9,7 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{
 		int i;
+		int  y;
 
 		i = -1;
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
@@ -19,8 +20,16 @@ int		main(int argc, char **argv)
 		while (res)
 		{
 			i = -1;
+			y = 0;
 			while (res->tetri[++i])
 				ft_putendl(res->tetri[i]);
+			while (y < 4)
+			{
+				ft_putnbr(res->point.x[y]);
+				ft_putnbr(res->point.y[y]);
+				ft_putendl("");
+				y++;
+			}
 			res = res->next;
 			ft_putendl("");
 		}
