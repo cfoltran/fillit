@@ -1,7 +1,7 @@
 #include "fillit.h"
 #include <stdio.h>
 
-t_tetri			*tetri_add(t_tetri *lst, char *line, char c, t_coord *point)
+t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 {
 	t_tetri		*tmp;
 	t_tetri		*i;
@@ -17,40 +17,38 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c, t_coord *point)
 			i = i->next;
 		i->next = tmp;
 	}
-	tmp->point = point;
 	tmp->tetri = ft_strsplit(line, '\n');
 	tmp->id = c;
 	tmp->next = NULL;
 	return (lst);
 }
 
-void		coord_add(t_coord **coord, char *line, int cpt)
-{
-	char 		*pos;
-	int			i;
+// void		coord_add(t_coord **coord, char *line, int cpt)
+// {
+// 	char 		*pos;
+// 	int			i;
 
-	i = 0;
-	if (line && cpt)
-	{
-		while (*coord)
-		{
-			coord = &(*coord)->next;
-		}
-		while ((pos = ft_strrchr(line, '#')))
-		{
-			(*coord)->x[++i] = cpt;
-			(*coord)->y[i] = pos - line;
-			line = ft_strcpy(line, pos);
-		}
-		if (*coord)
-			(*coord)->next = NULL;
-	}
-}
+// 	i = 0;
+// 	if (line && cpt)
+// 	{
+// 		while (*coord)
+// 		{
+// 			coord = &(*coord)->next;
+// 		}
+// 		while ((pos = ft_strrchr(line, '#')))
+// 		{
+// 			(*coord)->x[++i] = cpt;
+// 			(*coord)->y[i] = pos - line;
+// 			line = ft_strcpy(line, pos);
+// 		}
+// 		if (*coord)
+// 			(*coord)->next = NULL;
+// 	}
+// }
 
-t_tetri		*read_piece(int fd)
+t_tetri		*read_file(int fd)
 {
 	t_tetri	*lst;
-	t_coord *coord;
 	char	*line;
 	char	*tmp;
 	char	id;
@@ -60,23 +58,21 @@ t_tetri		*read_piece(int fd)
 	cpt = 0;
 	id = 'A';
 	lst = NULL;
-	if (!(coord = (t_coord*)malloc(sizeof(t_coord))))
-		return (NULL);
 	while (get_next_line(fd, &line) == 1)
 	{
 		if ((++cpt % 5) != 0 && line[4] != '\n' && line[5] != '\n')
 			return (NULL);
-		tmp = ft_strnew(ft_strlen(line));
-		tmp = ft_strcpy(tmp, line);
-		coord_add(&coord, line, cpt);
-		if (cpt % 5 == 0)
+		if (cpt == 1)
+			tmp = ft_strnew(0);
+		if (line[0] == '\n')
 		{
-			lst = tetri_add(lst, tmp, id++, coord);
-			//ft_bzero((void *)&coord, sizeof(t_coord));
-			ft_memdel((void *)&tmp);
-			ft_memdel((void *)&line);
+			lst = tetri_add(lst, tmp, id++);
+			ft_strclr(tmp);
 		}
+		tmp = ft_strjoinfree(tmp, line, ft_strlen(line), 0);
+		ft_memdel((void *)&line);
 	}
+	lst = tetri_add(lst, tmp, id++);
 	return (lst);
 }
 

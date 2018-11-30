@@ -34,8 +34,8 @@ typedef struct		s_tetri
 	struct s_tetri 	*next;
 }					t_tetri;
 
-t_tetri		        *read_piece(int fd);
-t_tetri				*tetri_add(t_tetri *lst, char *line, char c, t_coord *point);
+t_tetri		        *read_file(int fd);
+t_tetri				*tetri_add(t_tetri *lst, char *line, char c);
 void				coord_add(t_coord **cord, char *line, int cpt);
 int         		get_next_line(const int fd, char **line);
 int				    nb_piece(char **piece);
