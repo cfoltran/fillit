@@ -39,7 +39,6 @@ t_tetri				*tetri_add(t_tetri *lst, char *line, char c);
 void				coord_add(t_coord **cord, char *line, int cpt);
 int         		get_next_line(const int fd, char **line);
 int				    nb_piece(char **piece);
-//int				    check_errors(t_tetri *lst);
-int     check_errors(char **tab);
+int				    check_errors(t_tetri *lst);
 
 #endif

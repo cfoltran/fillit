@@ -14,8 +14,8 @@ int		main(int argc, char **argv)
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			ft_exit(OPENERR, 1);
 		res = read_file(fd);
-		// if (!check_errors(tab))
-		// 	ft_exit(GRIDERR, 1);
+		if (!check_errors(res))
+			ft_exit(GRIDERR, 1);
 		while (res)
 		{
 			i = -1;

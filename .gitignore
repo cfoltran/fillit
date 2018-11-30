@@ -5,4 +5,4 @@
 a.out
 fillit
 .DS_Store
-a.out.dSYM
+*.dSYM/

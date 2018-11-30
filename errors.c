@@ -13,8 +13,8 @@ int     nb_piece(char **piece)
     {
         if (ft_strlen(piece[i]) != END)
             return (0);
-        // nb_blocks += ft_strccnt(piece[i], BLOCK);
-        // nb_empty += ft_strccnt(piece[i], EMPTY);
+        nb_blocks += ft_strccnt(piece[i], BLOCK);
+        nb_empty += ft_strccnt(piece[i], EMPTY);
     }
     if (nb_blocks != END && nb_empty != END * END - BLOCK)
         return (0);
@@ -26,16 +26,15 @@ int     nb_piece(char **piece)
 
 // }
 
-int     check_errors(char **tab)
+int     check_errors(t_tetri *lst)
 {
-    int i = -1;
-    // if (!lst)
-    //     return (0);
-    while (tab[++i])
+    if (!lst)
+        return (0);
+    while (lst)
     {
-        if (!nb_piece(tab))
+        if (!nb_piece(lst->tetri))
             return (0);
-        //lst = lst->next;
+        lst = lst->next;
     }
     return (1);
 }
