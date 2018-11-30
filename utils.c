@@ -9,29 +9,35 @@ t_tetri		*coord_add(t_tetri *tetri)
 	t_tetri		*lst;
 
 
-	x = 0;
-	y = 0;
 	i = 0;
 	lst = tetri;
 	while (lst)
 	{
+		x = 0;
+		i = 0;
 		while ((lst->tetri)[x])
 		{
 			y = 0;
-			while ((lst->tetri)[x][y])
+			while ((lst->tetri)[x][y] && i <= 4)
 			{
 				if ((lst->tetri)[x][y] == '#')
 				{
 					lst->point.x[i] = x;
 					lst->point.y[i] = y;
+					i++;
 				}
+			/*	else
+				{
+					lst->point.x[i] = -1;
+					lst->point.y[i] = -1;
+				}*/
 				y++;
 			}
 			x++;
 		}
 		lst = lst->next;
 	}
-	return (lst);
+	return (tetri);
 }
 
 t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
@@ -55,29 +61,6 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 	tmp->next = NULL;
 	return (lst);
 }
-
-// void		coord_add(t_coord **coord, char *line, int cpt)
-// {
-// 	char 		*pos;
-// 	int			i;
-
-// 	i = 0;
-// 	if (line && cpt)
-// 	{
-// 		while (*coord)
-// 		{
-// 			coord = &(*coord)->next;
-// 		}
-// 		while ((pos = ft_strrchr(line, '#')))
-// 		{
-// 			(*coord)->x[++i] = cpt;
-// 			(*coord)->y[i] = pos - line;
-// 			line = ft_strcpy(line, pos);
-// 		}
-// 		if (*coord)
-// 			(*coord)->next = NULL;
-// 	}
-// }
 
 t_tetri		*read_file(int fd)
 {
