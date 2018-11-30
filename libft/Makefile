@@ -6,7 +6,7 @@
 #    By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 13:28:57 by clfoltra          #+#    #+#              #
-#    Updated: 2018/11/28 13:19:20 by clfoltra         ###   ########.fr        #
+#    Updated: 2018/11/30 13:45:20 by clfoltra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SRC = ft_putstr.c ft_putchar.c ft_putnbr.c ft_putendl.c ft_putchar_fd.c \
 		ft_strncmp.c ft_strlcat.c ft_strnlen.c ft_striteri.c ft_itoa.c \
 		ft_lstdel.c ft_strncat.c ft_lstmap.c ft_isblank.c ft_islower.c \
 		ft_isupper.c ft_str_is_alpha.c ft_str_is_lowercase.c ft_strichr.c \
-		ft_str_is_uppercase.c ft_strnjoinfree.c ft_strndup.c \
-
+		ft_str_is_uppercase.c ft_strnjoinfree.c ft_strndup.c ft_exit.c \
+		ft_strccnt.c \
 
 OBJ	= $(SRC:.c=.o)
 
@@ -35,17 +35,17 @@ CFLAGS	?=	-Wall -Wextra -Werror
 
 %.o: %.c
 	@$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
-	@echo compiling $@
+	@printf "\x1b[32m▮\x1b[32m"
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $@ $(OBJ)
+	@ar rcs $@ $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 re: fclean all

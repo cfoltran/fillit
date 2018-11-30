@@ -1,22 +1,42 @@
 #include "fillit.h"
+#include <stdio.h>
 
 int		main(int argc, char **argv)
 {
-	char	buf[BUFF_SIZE + 1];
-	char	**tab;
 	int 	fd;
-	int		ret;
+	t_tetri *res;
 
 	if (argc == 2)
 	{
+		int i;
+		int  y;
+
+		i = -1;
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
-			return (-1);
-		while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+			ft_exit(OPENERR, 1);
+		res = read_file(fd);
+		if (!check_errors(res))
+			ft_exit(GRIDERR, 1);
+		while (res)
 		{
-			buf[ret] = 0;	
+			i = -1;
+			y = 0;
+			while (res->tetri[++i])
+				ft_putendl(res->tetri[i]);
+			while (y < 4)
+			{
+				ft_putnbr(res->point.x[y]);
+				ft_putnbr(res->point.y[y]);
+				ft_putendl("");
+				y++;
+			}
+			res = res->next;
+			ft_putendl("");
 		}
+		if (close(fd) == -1)
+			ft_exit(CLOSERR, 1);
 	}
 	else
-		ft_putstr("usage: ./fillit filename\n");
+		ft_exit(FILEERR, 1);
 	return (0);
 }
