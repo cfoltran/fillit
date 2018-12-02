@@ -19,7 +19,18 @@ void		put_tetri(t_tetri *lst, char **tab, int x, int y)
 
 int			is_tetriput(t_tetri *tetri, char **tab, int x, int y)
 {
-	return (0);
+	int			i;
+	int 		len;
+
+	i = -1;
+	while (++i < 4)
+	{
+		if ()
+		return (0);
+		if ()
+		return (0);
+	}
+	return (1);
 }
 
 int			solv_fillit(t_tetri *tetri, char **tab)

@@ -46,6 +46,6 @@ int				    nb_piece(char **piece);
 int				    check_errors(t_tetri *lst);
 int					solv_fillit(t_tetri *tetri, char **tab);
 int					is_tetriput(t_tetri *tetri, char **tab, int x, int y);
-void				delete_tetri(t_tettri *lst, char **tab, int x, int y);
-void				put_tettri(t_tetri *lst, char **tab, itn x, int y);
+void				delete_tetri(t_tetri *lst, char **tab, int x, int y);
+void				put_tetri(t_tetri *lst, char **tab, int x, int y);
 #endif
