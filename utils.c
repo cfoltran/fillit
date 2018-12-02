@@ -90,7 +90,7 @@ t_tetri		*read_file(int fd)
 		ft_memdel((void *)&line);
 	}
 	lst = tetri_add(lst, tmp, id++);
-	// lst = coord_add(lst);
+	lst = coord_add(lst);
 	return (lst);
 }
 

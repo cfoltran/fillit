@@ -21,13 +21,33 @@ int     nb_piece(char **piece)
     return (1);
 }
 
+int     piece_integrity(t_tetri *lst)
+{
+    int i;
+
+    i = 0;
+    while (lst)
+    {
+        t_coord pt = lst->point;
+        while (i < 3)
+        {
+            if (pt.x[i + 1] == pt.x[i] + 1 || pt.y[i + 1] == pt.y[i] + 1)
+                i++;
+            else
+                return (0);
+        }
+        lst = lst->next;
+    }
+    return (1);
+}
+
 int     check_errors(t_tetri *lst)
 {
-    if (!lst)
+    if (!lst || !piece_integrity(lst))
         return (0);
     while (lst)
     {
-        if (!nb_piece(lst->tetri) || !piece_integrity(lst))
+        if (!nb_piece(lst->tetri))
             return (0);
         lst = lst->next;
     }

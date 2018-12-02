@@ -42,7 +42,7 @@ t_tetri		        *read_file(int fd);
 t_tetri				*tetri_add(t_tetri *lst, char *line, char c);
 int         		get_next_line(const int fd, char **line);
 int				    nb_piece(char **piece);
-//int					piece_integrity(t_tetri *lst);
+int					piece_integrity(t_tetri *lst);
 int				    check_errors(t_tetri *lst);
 int					solv_fillit(t_tetri *tetri, char **tab);
 int					is_tetriput(t_tetri *tetri, char **tab, int x, int y);
