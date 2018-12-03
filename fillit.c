@@ -17,11 +17,11 @@ char	**ft_create_table(int size)
 	int		j;
 	char	**result;
 
-	if (!(result = (char**)malloc(sizeof(char*) * size + 1)))
+	if (!(result = (char**)malloc(sizeof(char*) * (size + 1))))
 		return (NULL);
 	i = -1;
 	while (++i < size)
-		result[i] = ft_strnew(4);
+		result[i] = ft_strnew(size);
 	i = -1;
 	while (++i < size)
 	{
@@ -30,7 +30,7 @@ char	**ft_create_table(int size)
 			result[i][j] = '.';
 		result[i][j] = '\0';
 	}
-	result[i] = NULL;
+	result[size] = NULL;
 	return (result);
 }
 
@@ -42,7 +42,7 @@ int		main(int argc, char **argv)
 	int		size;
 	t_tetri *res;
 
-	size = 1;
+	size = 5;
 	tb = NULL;
 	if (argc == 2)
 	{
@@ -56,7 +56,7 @@ int		main(int argc, char **argv)
 			ft_exit(GRIDERR, 1);
 		if (!(tb = ft_create_table(size)))
 			return (0);
-		while (solv_fillit(res, tb))
+		while (!solv_fillit(res, tb))
 			tb = ft_create_table(size++);
 		ft_putresult(tb);
 			// while (res)
