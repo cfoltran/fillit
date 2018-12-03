@@ -3,11 +3,10 @@
 
 t_tetri		*coord_add(t_tetri *tetri)
 {
-	int 		x;
+	int			x;
 	int			y;
-	int 		i;
+	int			i;
 	t_tetri		*lst;
-
 
 	i = 0;
 	lst = tetri;
@@ -69,9 +68,7 @@ t_tetri		*read_file(int fd)
 	char	*tmp;
 	char	id;
 	int		cpt;
-	int		i;
 
-	i = 0;
 	cpt = 0;
 	id = 'A';
 	lst = NULL;

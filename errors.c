@@ -16,8 +16,8 @@ int		nb_piece(char **piece)
 		if (ft_strlen(piece[i]) != END)
 			return (0);
 		while (piece[i][++j])
-		 	if (piece[i][j] != BLOCK && piece[i][j] != EMPTY)
-		 		return (0);
+			if (piece[i][j] != BLOCK && piece[i][j] != EMPTY)
+				return (0);
 		nb_blocks += ft_strccnt(piece[i], BLOCK);
 		nb_empty += ft_strccnt(piece[i], EMPTY);
 	}
