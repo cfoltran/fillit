@@ -1,6 +1,34 @@
 #include "fillit.h"
 #include <stdio.h>
 
+void	free_table(char **tab)
+{
+	char	**full;
+	char	*tmp;
+
+	full = tab;
+	tmp = *tab;
+	while (tmp)
+	{
+		ft_strdel(&tmp);
+		tmp = *tab++;
+	}
+	free(full);
+}
+
+void	free_lst(t_tetri *lst)
+{
+	t_tetri *tmp;
+
+	while (lst)
+	{
+		tmp = lst;
+		free_table(lst->tetri);
+		lst = lst->next;
+		free(tmp);
+	}
+}
+
 void	ft_putresult(char **tab)
 {
 	int		i;
@@ -11,12 +39,14 @@ void	ft_putresult(char **tab)
 			ft_putendl(tab[i]);
 }
 
-char	**ft_create_table(int size)
+char	**ft_create_table(char **tab, int size)
 {
 	int		i;
 	int		j;
 	char	**result;
 
+	if (tab)
+		free_table(tab);
 	if (!(result = (char**)malloc(sizeof(char*) * (size + 1))))
 		return (NULL);
 	i = -1;
@@ -54,29 +84,15 @@ int		main(int argc, char **argv)
 		res = read_file(fd);
 		if (!check_errors(res))
 			ft_exit(GRIDERR, 1);
-		if (!(tb = ft_create_table(size)))
+		if (!(tb = ft_create_table(tb, size)))
 			return (0);
 		while (!solv_fillit(res, tb))
-			tb = ft_create_table(size++);
+			tb = ft_create_table(tb, size++);
 		ft_putresult(tb);
-			// while (res)
-			// {
-			// 	i = -1;
-			// 	y = 0;
-			// 	while (res->tetri[++i])
-			// 		ft_putendl(res->tetri[i]);
-			// 	while (y < 4)
-			// 	{
-			// 		ft_putnbr(res->point.x[y]);
-			// 		ft_putnbr(res->point.y[y]);
-			// 		ft_putendl("");
-			// 		y++;
-			// 	}
-			// 	res = res->next;
-			// 	ft_putendl("");
-			// }
-			if (close(fd) == -1)
-				ft_exit(CLOSERR, 1);
+		free_table(tb);
+		free_lst(res);
+		if (close(fd) == -1)
+			ft_exit(CLOSERR, 1);
 	}
 	else
 		ft_exit(FILEERR, 1);
