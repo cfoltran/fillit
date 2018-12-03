@@ -24,12 +24,8 @@ int			is_tetriput(t_tetri *tetri, char **tab, int x, int y)
 
 	i = -1;
 	while (++i < 4)
-	{
-		if ()
-		return (0);
-		if ()
-		return (0);
-	}
+		if (tab[x + lst->point.x[i]][y + lst->point.y[i]] != '.')
+			return (0);
 	return (1);
 }
 
