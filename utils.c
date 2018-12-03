@@ -93,4 +93,3 @@ t_tetri		*read_file(int fd)
 	lst = coord_add(lst);
 	return (lst);
 }
-
