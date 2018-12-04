@@ -49,17 +49,6 @@ int		piece_integrity(t_tetri *lst)
 
 int		check_errors(t_tetri *lst)
 {
-<<<<<<< HEAD
-	if (!lst || !piece_integrity(lst))
-		return (0);
-	while (lst)
-	{
-		if (!nb_piece(lst->tetri))
-			return (0);
-		lst = lst->next;
-	}
-	return (1);
-=======
     if (!lst || !piece_integrity(lst))
         return (0);
     while (lst)
@@ -69,5 +58,4 @@ int		check_errors(t_tetri *lst)
         lst = lst->next;
     }
     return (1);
->>>>>>> origin/othmane
 }
