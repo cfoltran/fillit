@@ -65,17 +65,16 @@ char	**ft_create_table(char **tab, int size)
 
 int		main(int argc, char **argv)
 {
-	char 	**tb;
-	int 	fd;
-	int		size;
-	t_tetri *res;
+	char		**tb;
+	int			fd;
+	int			size;
+	int			i;
+	t_tetri		*res;
 
 	size = 2;
 	tb = NULL;
 	if (argc == 2)
 	{
-		int i;
-
 		i = -1;
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			ft_exit(OPENERR, 1);

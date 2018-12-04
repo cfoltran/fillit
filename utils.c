@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-t_tetri		*coord_factorize(t_tetri *tetri)
+t_tetri			*coord_factorize(t_tetri *tetri)
 {
 	int			x_factor;
 	int			y_factor;
@@ -17,8 +17,8 @@ t_tetri		*coord_factorize(t_tetri *tetri)
 		{
 			if (tmp->point.x[i] < x_factor)
 				x_factor = tmp->point.x[i];
-			if(tmp->point.y[i] < y_factor)
-				y_factor = tmp->point.y[i]; 
+			if (tmp->point.y[i] < y_factor)
+				y_factor = tmp->point.y[i];
 		}
 		i = -1;
 		while (++i < END)
@@ -31,7 +31,7 @@ t_tetri		*coord_factorize(t_tetri *tetri)
 	return (tetri);
 }
 
-t_tetri		*coord_add(t_tetri *tetri)
+t_tetri			*coord_add(t_tetri *tetri)
 {
 	int			x;
 	int			y;
@@ -64,7 +64,6 @@ t_tetri		*coord_add(t_tetri *tetri)
 	return (coord_factorize(tetri));
 }
 
-
 t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 {
 	t_tetri		*tmp;
@@ -87,7 +86,7 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 	return (lst);
 }
 
-t_tetri		*read_file(int fd)
+t_tetri			*read_file(int fd)
 {
 	t_tetri	*lst;
 	char	*line;

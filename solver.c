@@ -2,7 +2,7 @@
 
 void		delete_tetri(t_tetri *lst, char **tab, int x, int y)
 {
-	int 	i;
+	int		i;
 
 	i = -1;
 	while (++i < 4)
@@ -11,7 +11,7 @@ void		delete_tetri(t_tetri *lst, char **tab, int x, int y)
 
 void		put_tetri(t_tetri *lst, char **tab, int x, int y)
 {
-	int 	i;
+	int		i;
 
 	i = -1;
 	while (++i < 4)
@@ -37,8 +37,8 @@ int			is_tetriput(t_tetri *lst, char **tab, int x, int y)
 
 int			solv_fillit(t_tetri *tetri, char **tab)
 {
-	int 		x;
-	int			y;
+	int		x;
+	int		y;
 
 	x = 0;
 	if (!tetri)
@@ -46,7 +46,7 @@ int			solv_fillit(t_tetri *tetri, char **tab)
 	while (tab[x])
 	{
 		y = 0;
-		while(tab[x][y])
+		while (tab[x][y])
 		{
 			if (is_tetriput(tetri, tab, x, y))
 			{
