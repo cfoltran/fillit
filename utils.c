@@ -1,5 +1,35 @@
 #include "fillit.h"
-#include <stdio.h>
+
+t_tetri		*coord_factorize(t_tetri *tetri)
+{
+	int			x_factor;
+	int			y_factor;
+	int			i;
+	t_tetri		*tmp;
+
+	tmp = tetri;
+	while (tmp)
+	{
+		i = -1;
+		x_factor = END;
+		y_factor = END;
+		while (++i < END)
+		{
+			if (tmp->point.x[i] < x_factor)
+				x_factor = tmp->point.x[i];
+			if(tmp->point.y[i] < y_factor)
+				y_factor = tmp->point.y[i]; 
+		}
+		i = -1;
+		while (++i < END)
+		{
+			tmp->point.x[i] -= x_factor;
+			tmp->point.y[i] -= y_factor;
+		}
+		tmp = tmp->next;
+	}
+	return (tetri);
+}
 
 t_tetri		*coord_add(t_tetri *tetri)
 {
@@ -25,19 +55,15 @@ t_tetri		*coord_add(t_tetri *tetri)
 					lst->point.y[i] = y;
 					i++;
 				}
-				else
-				{
-					lst->point.x[i] = -1;
-					lst->point.y[i] = -1;
-				}
 				y++;
 			}
 			x++;
 		}
 		lst = lst->next;
 	}
-	return (tetri);
+	return (coord_factorize(tetri));
 }
+
 
 t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 {
