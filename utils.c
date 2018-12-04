@@ -91,6 +91,8 @@ t_tetri		*read_file(int fd)
 	}
 	lst = tetri_add(lst, tmp, id++);
 	lst = coord_add(lst);
+	free(&tmp);
+	free(&line);
 	return (lst);
 }
 
