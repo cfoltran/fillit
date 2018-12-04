@@ -11,7 +11,7 @@ void	free_table(char **tab)
 	while (tmp)
 	{
 		ft_strdel(&tmp);
-		tmp = *tab++;
+		tmp = *++tab;
 	}
 	free(tmp_all);
 }
@@ -49,7 +49,7 @@ char	**ft_create_table(char **tab, int size)
 		free_table(tab);
 	printf("sizeof(char) => %lu\n", sizeof(char));
 	printf("sizeof(char*) => %lu\n", sizeof(char*));
-	if (!(result = (char**)malloc(sizeof(char*) * (size + 1))))
+	if (!(result = (char**)malloc(sizeof(char*) * (size))))
 		return (NULL);
 	i = -1;
 	while (++i < size)
@@ -57,9 +57,9 @@ char	**ft_create_table(char **tab, int size)
 	i = -1;
 	while (++i < size)
 	{
-		j = -1;
-		while (++j < size)
-			result[i][j] = '.';
+		j = 0;
+		while (j < size)
+			result[i][j++] = '.';
 		result[i][j] = '\0';
 	}
 	result[size] = NULL;
@@ -74,7 +74,7 @@ int		main(int argc, char **argv)
 	int		size;
 	t_tetri *res;
 
-	size = 2;
+	size = 5;
 	tb = NULL;
 	if (argc == 2)
 	{
