@@ -18,7 +18,7 @@ void		put_tetri(t_tetri *lst, char **tab, int x, int y)
 	{
 		printf("point.y: %d\n", lst->point.y[i]);
 		printf("      y: %d\n", y);
-		tab[x + lst->point.x[i]][y + lst->point.y[i]] = lst->id;}
+		tab[x + lst->point.x[i]][y + lst->point.y[i]] = lst->id;
 	}
 
 int			is_tetriput(t_tetri *lst, char **tab, int x, int y)
