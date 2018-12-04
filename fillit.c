@@ -1,5 +1,4 @@
 #include "fillit.h"
-#include <stdio.h>
 
 void	free_table(char **tab)
 {
@@ -47,9 +46,7 @@ char	**ft_create_table(char **tab, int size)
 
 	if (tab)
 		free_table(tab);
-	printf("sizeof(char) => %lu\n", sizeof(char));
-	printf("sizeof(char*) => %lu\n", sizeof(char*));
-	if (!(result = (char**)malloc(sizeof(char*) * (size))))
+	if (!(result = (char**)malloc(sizeof(char*) * (size + 1))))
 		return (NULL);
 	i = -1;
 	while (++i < size)
@@ -57,15 +54,14 @@ char	**ft_create_table(char **tab, int size)
 	i = -1;
 	while (++i < size)
 	{
-		j = 0;
-		while (j < size)
-			result[i][j++] = '.';
+		j = -1;
+		while (++j < size)
+			result[i][j] = '.';
 		result[i][j] = '\0';
 	}
 	result[size] = NULL;
 	return (result);
 }
-
 
 int		main(int argc, char **argv)
 {
@@ -74,7 +70,7 @@ int		main(int argc, char **argv)
 	int		size;
 	t_tetri *res;
 
-	size = 5;
+	size = 2;
 	tb = NULL;
 	if (argc == 2)
 	{
