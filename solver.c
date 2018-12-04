@@ -6,7 +6,7 @@ void		delete_tetri(t_tetri *lst, char **tab, int x, int y)
 
 	i = -1;
 	while (++i < 4)
-		tab[y + lst->point.y[i]][x + lst->point.x[i]] = '.';
+		tab[x + lst->point.x[i]][y + lst->point.y[i]] = '.';
 }
 
 void		put_tetri(t_tetri *lst, char **tab, int x, int y)
@@ -15,7 +15,7 @@ void		put_tetri(t_tetri *lst, char **tab, int x, int y)
 
 	i = -1;
 	while (++i < 4)
-		tab[y + lst->point.y[i]][x + lst->point.x[i]] = lst->id;
+		tab[x + lst->point.x[i]][y + lst->point.y[i]] = lst->id;
 }
 
 int			is_tetriput(t_tetri *lst, char **tab, int x, int y)
@@ -28,14 +28,8 @@ int			is_tetriput(t_tetri *lst, char **tab, int x, int y)
 	while (++i < 4)
 	{
 		if (x + lst->point.x[i] >= size || y + lst->point.y[i] >= size)
-		{
-			printf("size => %d ", size);
-			printf("number => %d ", x + lst->point.x[i]);
-			printf("x => %d ", x);
-			printf("lst->point.x[i] => %d \n", lst->point.x[i]);
 			return (0);
-		}
-		if (tab[y + lst->point.y[i]][x + lst->point.x[i]] != '.')
+		if (tab[x + lst->point.x[i]][y + lst->point.y[i]] != '.')
 			return (0);
 	}
 	return (1);
@@ -46,13 +40,13 @@ int			solv_fillit(t_tetri *tetri, char **tab)
 	int 		x;
 	int			y;
 
-	y = 0;
+	x = 0;
 	if (!tetri)
 		return (1);
-	while (tab[y])
+	while (tab[x])
 	{
-		x = 0;
-		while(tab[y][x])
+		y = 0;
+		while(tab[x][y])
 		{
 			if (is_tetriput(tetri, tab, x, y))
 			{
@@ -61,9 +55,9 @@ int			solv_fillit(t_tetri *tetri, char **tab)
 					return (1);
 				delete_tetri(tetri, tab, x, y);
 			}
-			++x;
+			++y;
 		}
-		++y;
+		++x;
 	}
 	return (0);
 }
