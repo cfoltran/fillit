@@ -21,11 +21,13 @@ void		put_tetri(t_tetri *lst, char **tab, int x, int y)
 int			is_tetriput(t_tetri *lst, char **tab, int x, int y)
 {
 	int			i;
+	int			size;
 
 	i = -1;
+	size = ft_strlen(tab[0]);
 	while (++i < 4)
 	{
-		if (x + lst->point.x[i] > 4 || y + lst->point.y[i] > 4)
+		if (x + lst->point.x[i] >= size || y + lst->point.y[i] >= size)
 			return (0);
 		if (tab[x + lst->point.x[i]][y + lst->point.y[i]] != '.')
 			return (0);
