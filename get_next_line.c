@@ -12,6 +12,13 @@
 
 #include "fillit.h"
 
+int			ft_verif_line(char **line)
+{
+	if (!**line)
+		free(*line);
+	return ((**line) ? 1 : 0);
+}
+
 int				get_next_line(const int fd, char **line)
 {
 	static char file[MAX_FD][BUFF_SIZE + 1];
@@ -36,6 +43,6 @@ int				get_next_line(const int fd, char **line)
 		ret = read(fd, file[fd], BUFF_SIZE);
 		buf[ret] = '\0';
 		if (!ret)
-			return ((**line) ? 1 : 0);
+			return (ft_verif_line(line));
 	}
 }
