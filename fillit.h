@@ -5,6 +5,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 # define BUFF_SIZE 	21
 # define MAX_FD 	4096
@@ -13,7 +14,7 @@
 # define FILEERR 	"usage: ./fillit filename"
 # define OPENERR 	"error : open"
 # define CLOSERR 	"error : close"
-# define GRIDERR 	"error : invalid grid"
+# define ERROR 		"error"
 
 # define END 		4
 # define BLOCK 		'#'

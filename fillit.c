@@ -81,9 +81,9 @@ int		main(int argc, char **argv)
 			ft_exit(OPENERR, 1);
 		res = read_file(fd);
 		if (!check_errors(res))
-			ft_exit(GRIDERR, 1);
+			ft_exit(ERROR, 1);
 		if (!(tb = ft_create_table(tb, size)))
-			return (0);
+			ft_exit(ERROR, 1);
 		while (!solv_fillit(res, tb))
 			tb = ft_create_table(tb, size++);
 		ft_putresult(tb);
