@@ -33,7 +33,6 @@ typedef struct		s_tetri
 	struct s_tetri	*next;
 }					t_tetri;
 
-
 void				free_lst(t_tetri *lst);
 t_tetri				*coord_add(t_tetri *lst);
 t_tetri				*read_file(int fd);
@@ -46,4 +45,5 @@ int					solv_fillit(t_tetri *tetri, char **tab);
 int					is_tetriput(t_tetri *tetri, char **tab, int x, int y);
 void				delete_tetri(t_tetri *lst, char **tab, int x, int y);
 void				put_tetri(t_tetri *lst, char **tab, int x, int y);
+
 #endif

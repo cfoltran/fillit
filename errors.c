@@ -44,7 +44,7 @@ int		piece_integrity(char **piece)
 				if (y < (END - 1) && piece[y + 1][x] == BLOCK)
 					count++;
 				if (x < (END - 1) && piece[y][x + 1] == BLOCK)
-					count++;		
+					count++;
 				if (y && piece[y - 1][x] == BLOCK)
 					count++;
 				if (x && piece[y][x - 1] == BLOCK)
