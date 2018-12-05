@@ -1,5 +1,13 @@
 #include "fillit.h"
 
+void			ft_norme(int x, int y, int *x_factor, int *y_factor)
+{
+	if (x < *x_factor)
+		*x_factor = x;
+	if (y < *y_factor)
+		*y_factor = y;
+}
+
 t_tetri			*coord_factorize(t_tetri *tetri)
 {
 	int			x_factor;
@@ -14,12 +22,7 @@ t_tetri			*coord_factorize(t_tetri *tetri)
 		x_factor = END;
 		y_factor = END;
 		while (++i < END)
-		{
-			if (tmp->point.x[i] < x_factor)
-				x_factor = tmp->point.x[i];
-			if (tmp->point.y[i] < y_factor)
-				y_factor = tmp->point.y[i];
-		}
+			ft_norme(tmp->point.x[i], tmp->point.y[i], &x_factor, &y_factor);
 		i = -1;
 		while (++i < END)
 		{
@@ -48,7 +51,7 @@ t_tetri			*coord_add(t_tetri *tetri)
 		{
 			y = -1;
 			while ((lst->tetri)[x][++y] && i <= END)
-				if ((lst->tetri)[x][y] == '#')
+				if ((lst->tetri)[x][y] == BLOCK)
 				{
 					lst->point.x[i] = x;
 					lst->point.y[i] = y;
@@ -79,6 +82,7 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 	tmp->tetri = ft_strsplit(line, '\n');
 	tmp->id = c;
 	tmp->next = NULL;
+	ft_strclr(line);
 	return (lst);
 }
 
@@ -100,16 +104,12 @@ t_tetri			*read_file(int fd)
 		if (cpt == 1)
 			tmp = ft_strnew(0);
 		if (line[0] == '\n')
-		{
 			lst = tetri_add(lst, tmp, id++);
-			ft_strclr(tmp);
-		}
 		tmp = ft_strjoinfree(tmp, line, ft_strlen(line), 2);
 	}
 	if (!lst)
 		return (NULL);
 	lst = tetri_add(lst, tmp, id++);
 	lst = coord_add(lst);
-	ft_memdel((void *)&tmp);
 	return (lst);
 }

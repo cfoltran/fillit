@@ -6,7 +6,7 @@
 /*   By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:38:42 by clfoltra          #+#    #+#             */
-/*   Updated: 2018/12/05 17:36:46 by clfoltra         ###   ########.fr       */
+/*   Updated: 2018/12/05 17:40:38 by clfoltra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	free_lst(t_tetri *lst)
 	{
 		tmp = lst;
 		free_table(lst->tetri);
-		ft_memdel((void *)&lst->point);
 		lst = lst->next;
 		ft_memdel((void *)&tmp);
 	}
