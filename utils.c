@@ -97,16 +97,19 @@ t_tetri			*read_file(int fd)
 	cpt = 0;
 	id = 'A';
 	lst = NULL;
-	while (get_next_line(fd, &line) == 1)
+	tmp = ft_strnew(0);
+	while (TRUE)
 	{
+		if (get_next_line(fd, &line) == 0)
+			break ;
 		if ((++cpt % 5) != 0 && line[4] != '\n' && line[5] != '\n')
 			return (NULL);
-		if (cpt == 1)
-			tmp = ft_strnew(0);
 		if (line[0] == '\n')
 			lst = tetri_add(lst, tmp, id++);
 		tmp = ft_strjoinfree(tmp, line, ft_strlen(line), 3);
 	}
+	if (!lst && !tmp)
+		return (NULL);
 	lst = tetri_add(lst, tmp, id++);
 	lst = coord_add(lst);
 	return (lst);
