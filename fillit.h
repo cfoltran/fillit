@@ -12,8 +12,6 @@
 # define TRUE		1
 
 # define FILEERR 	"usage: ./fillit filename"
-# define OPENERR 	"error : open"
-# define CLOSERR 	"error : close"
 # define ERROR 		"error"
 
 # define END 		4
@@ -35,12 +33,14 @@ typedef struct		s_tetri
 	struct s_tetri	*next;
 }					t_tetri;
 
+
+void				free_lst(t_tetri *lst);
 t_tetri				*coord_add(t_tetri *lst);
 t_tetri				*read_file(int fd);
 t_tetri				*tetri_add(t_tetri *lst, char *line, char c);
 int					get_next_line(const int fd, char **line);
 int					nb_piece(char **piece);
-int					piece_integrity(t_tetri *lst);
+int					piece_integrity(char **piece);
 int					check_errors(t_tetri *lst);
 int					solv_fillit(t_tetri *tetri, char **tab);
 int					is_tetriput(t_tetri *tetri, char **tab, int x, int y);
