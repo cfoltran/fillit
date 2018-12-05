@@ -6,22 +6,22 @@
 /*   By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 14:03:53 by clfoltra          #+#    #+#             */
-/*   Updated: 2018/12/04 17:18:13 by clfoltra         ###   ########.fr       */
+/*   Updated: 2018/12/05 11:58:37 by clfoltra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			ft_verif_line(char **line)
+int		ft_verif_line(char **line)
 {
 	if (!**line)
 		free(*line);
 	return ((**line) ? 1 : 0);
 }
 
-int				get_next_line(const int fd, char **line)
+int		get_next_line(const int fd, char **line)
 {
-	static char file[MAX_FD][BUFF_SIZE + 1];
+	static char	file[MAX_FD][BUFF_SIZE + 1];
 	char		*buf;
 	char		*pos;
 	int			ret;

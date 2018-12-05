@@ -42,22 +42,18 @@ t_tetri			*coord_add(t_tetri *tetri)
 	lst = tetri;
 	while (lst)
 	{
-		x = 0;
+		x = -1;
 		i = 0;
-		while ((lst->tetri)[x])
+		while ((lst->tetri)[++x])
 		{
-			y = 0;
-			while ((lst->tetri)[x][y] && i <= 4)
-			{
+			y = -1;
+			while ((lst->tetri)[x][++y] && i <= 4)
 				if ((lst->tetri)[x][y] == '#')
 				{
 					lst->point.x[i] = x;
 					lst->point.y[i] = y;
 					i++;
 				}
-				y++;
-			}
-			x++;
 		}
 		lst = lst->next;
 	}

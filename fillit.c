@@ -2,8 +2,8 @@
 
 void	free_table(char **tab)
 {
-	char	**tmp_all;
-	char	*tmp;
+	char **tmp_all;
+	char *tmp;
 
 	tmp_all = tab;
 	tmp = *tab;
@@ -30,7 +30,7 @@ void	free_lst(t_tetri *lst)
 
 void	ft_putresult(char **tab)
 {
-	int		i;
+	int i;
 
 	i = -1;
 	if (tab)
@@ -40,13 +40,13 @@ void	ft_putresult(char **tab)
 
 char	**ft_create_table(char **tab, int size)
 {
+	char	**result;
 	int		i;
 	int		j;
-	char	**result;
 
 	if (tab)
 		free_table(tab);
-	if (!(result = (char**)malloc(sizeof(char*) * (size + 1))))
+	if (!(result = (char **)malloc(sizeof(char *) * (size + 1))))
 		return (NULL);
 	i = -1;
 	while (++i < size)
@@ -65,17 +65,15 @@ char	**ft_create_table(char **tab, int size)
 
 int		main(int argc, char **argv)
 {
+	t_tetri		*res;
 	char		**tb;
 	int			fd;
 	int			size;
-	int			i;
-	t_tetri		*res;
 
 	size = 2;
 	tb = NULL;
 	if (argc == 2)
 	{
-		i = -1;
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			ft_exit(OPENERR, 1);
 		res = read_file(fd);
