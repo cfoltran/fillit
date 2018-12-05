@@ -6,7 +6,7 @@
 /*   By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:38:42 by clfoltra          #+#    #+#             */
-/*   Updated: 2018/12/05 20:19:10 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2018/12/05 20:28:09 by clfoltra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static char		**ft_create_table(char **tab, int size)
 	return (result);
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_tetri		*res;
 	char		**tb;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 20:09:58 by oel-ayad          #+#    #+#             */
-/*   Updated: 2018/12/05 20:20:20 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2018/12/05 20:27:31 by clfoltra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int		piece_integrity(char **piece)
 	return ((count == 6 || count == 8) ? 1 : 0);
 }
 
-int		errors(t_tetri *lst)
+int				errors(t_tetri *lst)
 {
 	if (!lst)
 		return (0);

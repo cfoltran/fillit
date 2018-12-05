@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 20:05:59 by oel-ayad          #+#    #+#             */
-/*   Updated: 2018/12/05 20:20:38 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2018/12/05 20:25:55 by clfoltra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void			ft_norme(int x, int y, int *x_factor, int *y_factor)
+static void				ft_norme(int x, int y, int *x_factor, int *y_factor)
 {
 	if (x < *x_factor)
 		*x_factor = x;
