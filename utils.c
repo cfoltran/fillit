@@ -6,13 +6,13 @@
 /*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 20:05:59 by oel-ayad          #+#    #+#             */
-/*   Updated: 2018/12/05 20:10:24 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2018/12/05 20:20:38 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void			ft_norme(int x, int y, int *x_factor, int *y_factor)
+static void			ft_norme(int x, int y, int *x_factor, int *y_factor)
 {
 	if (x < *x_factor)
 		*x_factor = x;
@@ -20,7 +20,7 @@ void			ft_norme(int x, int y, int *x_factor, int *y_factor)
 		*y_factor = y;
 }
 
-t_tetri			*coord_factorize(t_tetri *tetri)
+static t_tetri			*coord_factorize(t_tetri *tetri)
 {
 	int			x_factor;
 	int			y_factor;
@@ -46,7 +46,7 @@ t_tetri			*coord_factorize(t_tetri *tetri)
 	return (tetri);
 }
 
-t_tetri			*coord_add(t_tetri *tetri)
+static t_tetri			*coord_add(t_tetri *tetri)
 {
 	int			x;
 	int			y;
@@ -75,7 +75,7 @@ t_tetri			*coord_add(t_tetri *tetri)
 	return (coord_factorize(tetri));
 }
 
-t_tetri			*tetri_add(t_tetri *lst, char *line, char c, int op)
+static t_tetri			*tetri_add(t_tetri *lst, char *line, char c, int op)
 {
 	t_tetri		*tmp;
 	t_tetri		*i;
@@ -100,7 +100,7 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c, int op)
 	return (lst);
 }
 
-t_tetri			*read_file(int fd)
+t_tetri					*read_file(int fd)
 {
 	t_tetri	*lst;
 	char	*line;

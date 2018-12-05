@@ -6,13 +6,13 @@
 /*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 20:09:39 by oel-ayad          #+#    #+#             */
-/*   Updated: 2018/12/05 20:09:40 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2018/12/05 20:17:02 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		delete_tetri(t_tetri *lst, char **tab, int x, int y)
+static void			delete_tetri(t_tetri *lst, char **tab, int x, int y)
 {
 	int		i;
 
@@ -21,7 +21,7 @@ void		delete_tetri(t_tetri *lst, char **tab, int x, int y)
 		tab[x + lst->point.x[i]][y + lst->point.y[i]] = '.';
 }
 
-void		put_tetri(t_tetri *lst, char **tab, int x, int y)
+static void			put_tetri(t_tetri *lst, char **tab, int x, int y)
 {
 	int		i;
 
@@ -30,7 +30,7 @@ void		put_tetri(t_tetri *lst, char **tab, int x, int y)
 		tab[x + lst->point.x[i]][y + lst->point.y[i]] = lst->id;
 }
 
-int			is_tetriput(t_tetri *lst, char **tab, int x, int y)
+static int			is_tetriput(t_tetri *lst, char **tab, int x, int y)
 {
 	int			i;
 	int			size;
@@ -47,7 +47,7 @@ int			is_tetriput(t_tetri *lst, char **tab, int x, int y)
 	return (1);
 }
 
-int			solv_fillit(t_tetri *tetri, char **tab)
+int					solv_fillit(t_tetri *tetri, char **tab)
 {
 	int		x;
 	int		y;

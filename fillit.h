@@ -6,7 +6,7 @@
 /*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 20:09:52 by oel-ayad          #+#    #+#             */
-/*   Updated: 2018/12/05 20:09:54 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2018/12/05 20:21:27 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,9 @@ typedef struct		s_tetri
 	struct s_tetri	*next;
 }					t_tetri;
 
-void				free_lst(t_tetri *lst);
-t_tetri				*coord_add(t_tetri *lst);
 t_tetri				*read_file(int fd);
 int					get_next_line(const int fd, char **line);
-int					nb_piece(char **piece);
-int					piece_integrity(char **piece);
 int					errors(t_tetri *lst);
 int					solv_fillit(t_tetri *tetri, char **tab);
-int					is_tetriput(t_tetri *tetri, char **tab, int x, int y);
-void				delete_tetri(t_tetri *lst, char **tab, int x, int y);
-void				put_tetri(t_tetri *lst, char **tab, int x, int y);
 
 #endif

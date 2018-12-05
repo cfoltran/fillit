@@ -6,13 +6,13 @@
 /*   By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:38:42 by clfoltra          #+#    #+#             */
-/*   Updated: 2018/12/05 20:07:27 by clfoltra         ###   ########.fr       */
+/*   Updated: 2018/12/05 20:19:10 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	free_table(char **tab)
+static void		free_table(char **tab)
 {
 	char	**tmp_all;
 	char	*tmp;
@@ -30,7 +30,7 @@ void	free_table(char **tab)
 	ft_memdel((void *)&tmp_all);
 }
 
-void	free_lst(t_tetri *lst)
+static void		free_lst(t_tetri *lst)
 {
 	t_tetri *tmp;
 
@@ -43,7 +43,7 @@ void	free_lst(t_tetri *lst)
 	}
 }
 
-void	ft_putresult(char **tab)
+static void		ft_putresult(char **tab)
 {
 	int i;
 
@@ -53,7 +53,7 @@ void	ft_putresult(char **tab)
 			ft_putendl(tab[i]);
 }
 
-char	**ft_create_table(char **tab, int size)
+static char		**ft_create_table(char **tab, int size)
 {
 	char	**result;
 	int		i;

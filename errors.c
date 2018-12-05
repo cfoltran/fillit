@@ -6,13 +6,13 @@
 /*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 20:09:58 by oel-ayad          #+#    #+#             */
-/*   Updated: 2018/12/05 20:10:00 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2018/12/05 20:20:20 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		nb_piece(char **piece)
+static int		nb_piece(char **piece)
 {
 	int nb_blocks;
 	int nb_empty;
@@ -38,7 +38,7 @@ int		nb_piece(char **piece)
 	return (1);
 }
 
-int		piece_integrity(char **piece)
+static int		piece_integrity(char **piece)
 {
 	int	x;
 	int y;
