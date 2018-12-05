@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/05 20:05:59 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/12/05 20:06:03 by oel-ayad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 void			ft_norme(int x, int y, int *x_factor, int *y_factor)
@@ -63,7 +75,7 @@ t_tetri			*coord_add(t_tetri *tetri)
 	return (coord_factorize(tetri));
 }
 
-t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
+t_tetri			*tetri_add(t_tetri *lst, char *line, char c, int op)
 {
 	t_tetri		*tmp;
 	t_tetri		*i;
@@ -83,6 +95,8 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 	tmp->id = c;
 	tmp->next = NULL;
 	ft_strclr(line);
+	if (op)
+		lst = coord_add(lst);
 	return (lst);
 }
 
@@ -105,13 +119,12 @@ t_tetri			*read_file(int fd)
 		if ((++cpt % 5) != 0 && line[4] != '\n' && line[5] != '\n')
 			return (NULL);
 		if (line[0] == '\n')
-			lst = tetri_add(lst, tmp, id++);
+			lst = tetri_add(lst, tmp, id++, 0);
 		tmp = ft_strjoinfree(tmp, line, ft_strlen(line), 3);
 	}
 	if (!lst && !tmp)
 		return (NULL);
-	lst = tetri_add(lst, tmp, id++);
-	lst = coord_add(lst);
+	lst = tetri_add(lst, tmp, id++, 1);
 	ft_memdel((void *)&tmp);
 	return (lst);
 }
