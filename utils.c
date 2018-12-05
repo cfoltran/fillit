@@ -1,43 +1,63 @@
 #include "fillit.h"
-#include <stdio.h>
 
-t_tetri		*coord_add(t_tetri *tetri)
+t_tetri			*coord_factorize(t_tetri *tetri)
 {
-	int 		x;
-	int			y;
-	int 		i;
-	t_tetri		*lst;
+	int			x_factor;
+	int			y_factor;
+	int			i;
+	t_tetri		*tmp;
 
+	tmp = tetri;
+	while (tmp)
+	{
+		i = -1;
+		x_factor = END;
+		y_factor = END;
+		while (++i < END)
+		{
+			if (tmp->point.x[i] < x_factor)
+				x_factor = tmp->point.x[i];
+			if (tmp->point.y[i] < y_factor)
+				y_factor = tmp->point.y[i];
+		}
+		i = -1;
+		while (++i < END)
+		{
+			tmp->point.x[i] -= x_factor;
+			tmp->point.y[i] -= y_factor;
+		}
+		tmp = tmp->next;
+	}
+	return (tetri);
+}
+
+t_tetri			*coord_add(t_tetri *tetri)
+{
+	int			x;
+	int			y;
+	int			i;
+	t_tetri		*lst;
 
 	i = 0;
 	lst = tetri;
 	while (lst)
 	{
-		x = 0;
+		x = -1;
 		i = 0;
-		while ((lst->tetri)[x])
+		while ((lst->tetri)[++x])
 		{
-			y = 0;
-			while ((lst->tetri)[x][y] && i <= 4)
-			{
+			y = -1;
+			while ((lst->tetri)[x][++y] && i <= 4)
 				if ((lst->tetri)[x][y] == '#')
 				{
 					lst->point.x[i] = x;
 					lst->point.y[i] = y;
 					i++;
 				}
-				else
-				{
-					lst->point.x[i] = -1;
-					lst->point.y[i] = -1;
-				}
-				y++;
-			}
-			x++;
 		}
 		lst = lst->next;
 	}
-	return (tetri);
+	return (coord_factorize(tetri));
 }
 
 t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
@@ -62,16 +82,14 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 	return (lst);
 }
 
-t_tetri		*read_file(int fd)
+t_tetri			*read_file(int fd)
 {
 	t_tetri	*lst;
 	char	*line;
 	char	*tmp;
 	char	id;
 	int		cpt;
-	int		i;
 
-	i = 0;
 	cpt = 0;
 	id = 'A';
 	lst = NULL;
@@ -90,7 +108,7 @@ t_tetri		*read_file(int fd)
 		ft_memdel((void *)&line);
 	}
 	lst = tetri_add(lst, tmp, id++);
-	// lst = coord_add(lst);
+	lst = coord_add(lst);
+	ft_memdel((void *)&tmp);
 	return (lst);
 }
-

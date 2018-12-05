@@ -3,6 +3,7 @@ NAME = fillit
 SRC =	utils.c \
   	  	fillit.c \
 		get_next_line.c \
+		solver.c \
 		errors.c \
 
 CC = gcc
