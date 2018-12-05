@@ -55,7 +55,7 @@ int		piece_integrity(char **piece)
 	return ((count == 6 || count == 8) ? 1 : 0);
 }
 
-int		check_errors(t_tetri *lst)
+int		errors(t_tetri *lst)
 {
 	if (!lst)
 		return (0);

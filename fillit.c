@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fillit.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/05 16:38:42 by clfoltra          #+#    #+#             */
+/*   Updated: 2018/12/05 16:50:24 by clfoltra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 void	free_table(char **tab)
 {
-	char **tmp_all;
-	char *tmp;
-	int i;
+	char	**tmp_all;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	tmp_all = tab;
@@ -15,7 +27,6 @@ void	free_table(char **tab)
 		tmp = *++tab;
 		i++;
 	}
-	printf("\n\n\n\n\n\n\n\n%d\n\n\n\n\n\n\n\n\n\n\n", i);
 	ft_memdel((void *)&tmp_all);
 }
 
@@ -81,11 +92,8 @@ int		main(int argc, char **argv)
 	{
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			ft_exit(ERROR, 1);
-		if (!(res = read_file(fd)))
-			ft_exit(ERROR, 1);
-		if (!check_errors(res))
-			ft_exit(ERROR, 1);
-		if (!(tb = ft_create_table(tb, size)))
+		res = read_file(fd);
+		if (!errors(res) || !(tb = ft_create_table(tb, size)))
 			ft_exit(ERROR, 1);
 		while (!solv_fillit(res, tb))
 			tb = ft_create_table(tb, size++);
