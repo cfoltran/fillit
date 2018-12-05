@@ -35,6 +35,8 @@ typedef struct		s_tetri
 	struct s_tetri	*next;
 }					t_tetri;
 
+
+void				free_lst(t_tetri *lst);
 t_tetri				*coord_add(t_tetri *lst);
 t_tetri				*read_file(int fd);
 t_tetri				*tetri_add(t_tetri *lst, char *line, char c);

@@ -4,15 +4,19 @@ void	free_table(char **tab)
 {
 	char **tmp_all;
 	char *tmp;
+	int i;
 
+	i = 0;
 	tmp_all = tab;
 	tmp = *tab;
 	while (tmp)
 	{
 		ft_strdel(&tmp);
 		tmp = *++tab;
+		i++;
 	}
-	free(tmp_all);
+	printf("\n\n\n\n\n\n\n\n%d\n\n\n\n\n\n\n\n\n\n\n", i);
+	ft_memdel((void *)&tmp_all);
 }
 
 void	free_lst(t_tetri *lst)
@@ -23,8 +27,9 @@ void	free_lst(t_tetri *lst)
 	{
 		tmp = lst;
 		free_table(lst->tetri);
+		ft_memdel((void *)&lst->point);
 		lst = lst->next;
-		free(tmp);
+		ft_memdel((void *)&tmp);
 	}
 }
 

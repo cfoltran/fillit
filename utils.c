@@ -47,7 +47,7 @@ t_tetri			*coord_add(t_tetri *tetri)
 		while ((lst->tetri)[++x])
 		{
 			y = -1;
-			while ((lst->tetri)[x][++y] && i <= 4)
+			while ((lst->tetri)[x][++y] && i <= END)
 				if ((lst->tetri)[x][y] == '#')
 				{
 					lst->point.x[i] = x;
@@ -104,8 +104,7 @@ t_tetri			*read_file(int fd)
 			lst = tetri_add(lst, tmp, id++);
 			ft_strclr(tmp);
 		}
-		tmp = ft_strjoinfree(tmp, line, ft_strlen(line), 0);
-		ft_memdel((void *)&line);
+		tmp = ft_strjoinfree(tmp, line, ft_strlen(line), 2);
 	}
 	lst = tetri_add(lst, tmp, id++);
 	lst = coord_add(lst);
