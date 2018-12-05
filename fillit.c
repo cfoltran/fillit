@@ -75,8 +75,9 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
-			ft_exit(OPENERR, 1);
-		res = read_file(fd);
+			ft_exit(ERROR, 1);
+		if (!(res = read_file(fd)))
+			ft_exit(ERROR, 1);
 		if (!check_errors(res))
 			ft_exit(ERROR, 1);
 		if (!(tb = ft_create_table(tb, size)))
@@ -87,7 +88,7 @@ int		main(int argc, char **argv)
 		free_table(tb);
 		free_lst(res);
 		if (close(fd) == -1)
-			ft_exit(CLOSERR, 1);
+			ft_exit(ERROR, 1);
 	}
 	else
 		ft_exit(FILEERR, 1);

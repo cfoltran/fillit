@@ -21,39 +21,47 @@ int		nb_piece(char **piece)
 		nb_blocks += ft_strccnt(piece[i], BLOCK);
 		nb_empty += ft_strccnt(piece[i], EMPTY);
 	}
-	if (nb_blocks != END && nb_empty != END * END - END)
+	if ((nb_blocks != END && nb_empty != END * END - END) || i != END)
 		return (0);
 	return (1);
 }
 
-int		piece_integrity(t_tetri *lst)
+int		piece_integrity(char **piece)
 {
-	t_coord		pt;
-	int			i;
+	int	x;
+	int y;
+	int count;
 
-	i = 0;
-	while (lst)
+	count = 0;
+	y = -1;
+	while (piece[++y])
 	{
-		pt = lst->point;
-		while (i < 3)
+		x = -1;
+		while (piece[y][++x])
 		{
-			if (pt.x[i + 1] == pt.x[i] + 1 || pt.y[i + 1] == pt.y[i] + 1)
-				i++;
-			else
-				return (0);
+			if (piece[y][x] == BLOCK)
+			{
+				if (y < (END - 1) && piece[y + 1][x] == BLOCK)
+					count++;
+				if (x < (END - 1) && piece[y][x + 1] == BLOCK)
+					count++;		
+				if (y && piece[y - 1][x] == BLOCK)
+					count++;
+				if (x && piece[y][x - 1] == BLOCK)
+					count++;
+			}
 		}
-		lst = lst->next;
 	}
-	return (1);
+	return ((count == 6 || count == 8) ? 1 : 0);
 }
 
 int		check_errors(t_tetri *lst)
 {
-	if (!lst || !piece_integrity(lst))
+	if (!lst)
 		return (0);
 	while (lst)
 	{
-		if (!nb_piece(lst->tetri))
+		if (!nb_piece(lst->tetri) || !piece_integrity(lst->tetri))
 			return (0);
 		lst = lst->next;
 	}

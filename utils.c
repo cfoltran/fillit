@@ -107,6 +107,8 @@ t_tetri			*read_file(int fd)
 		tmp = ft_strjoinfree(tmp, line, ft_strlen(line), 0);
 		ft_memdel((void *)&line);
 	}
+	if (!lst)
+		return (NULL);
 	lst = tetri_add(lst, tmp, id++);
 	lst = coord_add(lst);
 	ft_memdel((void *)&tmp);
