@@ -6,7 +6,7 @@
 /*   By: clfoltra <clfoltra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:38:42 by clfoltra          #+#    #+#             */
-/*   Updated: 2018/12/05 16:50:24 by clfoltra         ###   ########.fr       */
+/*   Updated: 2018/12/05 17:36:46 by clfoltra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ int		main(int argc, char **argv)
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			ft_exit(ERROR, 1);
 		res = read_file(fd);
-		if (!errors(res) || !(tb = ft_create_table(tb, size)))
+		if (!errors(res))
+			ft_exit(ERROR, 1);
+		if (!(tb = ft_create_table(tb, size)))
 			ft_exit(ERROR, 1);
 		while (!solv_fillit(res, tb))
 			tb = ft_create_table(tb, size++);
