@@ -7,3 +7,5 @@ fillit
 .DS_Store
 a.out.dSYM
 .vscode
+test/*
+test

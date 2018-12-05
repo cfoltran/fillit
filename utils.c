@@ -31,7 +31,6 @@ t_tetri			*coord_factorize(t_tetri *tetri)
 		}
 		tmp = tmp->next;
 	}
-	ft_memdel((void*)&tmp);
 	return (tetri);
 }
 
@@ -83,6 +82,7 @@ t_tetri			*tetri_add(t_tetri *lst, char *line, char c)
 	tmp->tetri = ft_strsplit(line, '\n');
 	tmp->id = c;
 	tmp->next = NULL;
+	ft_strclr(line);
 	return (lst);
 }
 
@@ -104,10 +104,7 @@ t_tetri			*read_file(int fd)
 		if (cpt == 1)
 			tmp = ft_strnew(0);
 		if (line[0] == '\n')
-		{
 			lst = tetri_add(lst, tmp, id++);
-			ft_strclr(tmp);
-		}
 		tmp = ft_strjoinfree(tmp, line, ft_strlen(line), 2);
 	}
 	if (!lst)
